@@ -29,7 +29,7 @@ public class TeamColorSetter : NetworkBehaviour
     {
         //For setting the actual Models of units & buildings to the Player / Team colour.
         foreach(Renderer renderer in colorRenderers)
-        {
+        {    
             renderer.material.SetColor("_BaseColor", newColor);
             
             /* - The below is backup code final release models have the second level mat/renderer as the main - this is not normally the case and will try to avoid it when being made.
