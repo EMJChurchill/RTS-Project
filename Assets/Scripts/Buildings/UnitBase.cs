@@ -36,7 +36,4 @@ public class UnitBase : NetworkBehaviour
 
     #endregion
 
-    #region Client
-
-    #endregion
 }
