@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class MainMenu : MonoBehaviour
 {
-    [SerializeField] private GameObject landingPagePanel = null;
-
     [SerializeField] private bool useSteam = false;
+
+    [SerializeField] private GameObject[] windows;
 
     protected Callback<LobbyCreated_t> lobbyCreated;
     protected Callback<GameLobbyJoinRequested_t> gameLobbyJoinRequested;
@@ -23,7 +23,7 @@ public class MainMenu : MonoBehaviour
 
     public void HostLobby()
     {
-        landingPagePanel.SetActive(false);
+        //windows[0].SetActive(false);
 
         if (useSteam)
         {
@@ -38,7 +38,7 @@ public class MainMenu : MonoBehaviour
     {
         if(callback.m_eResult != EResult.k_EResultOK)
         {
-            landingPagePanel.SetActive(true);
+            windows[0].SetActive(true);
             return;
         }
 
@@ -61,6 +61,26 @@ public class MainMenu : MonoBehaviour
         NetworkManager.singleton.networkAddress = hostAddress;
         NetworkManager.singleton.StartClient();
 
-        landingPagePanel.SetActive(false);
+        windows[0].SetActive(false);
+    }
+
+    public void ToggleWindow(int windowNumber)
+    {
+        for (int i = 0; i < windows.Length; i++)
+        {
+            if (i == windowNumber)
+            {
+                windows[i].SetActive(!windows[i].activeInHierarchy);
+            }
+            else
+            {
+                windows[i].SetActive(false);
+            }
+        }
+    }
+
+    public void Quit()
+    {
+        Application.Quit();
     }
 }

@@ -10,8 +10,6 @@ public class ResourceGenerator : NetworkBehaviour
     private float timer;
     private RTSPlayer player;
 
-    public GameObject Node;
-
     public override void OnStartServer()
     {
         timer = interval;
@@ -38,23 +36,6 @@ public class ResourceGenerator : NetworkBehaviour
 
             timer += interval;
         }       
-        
-            GameObject[] gos;
-            gos = GameObject.FindGameObjectsWithTag("SyntheticNode");
-            GameObject Node = null;
-            float distance = Mathf.Infinity;
-            Vector3 position = transform.position;
-            foreach (GameObject go in gos)
-            {
-                Vector3 diff = go.transform.position - position;
-                float curDistance = diff.sqrMagnitude;
-                if (curDistance < distance)
-                {
-                    Node = go;
-                    distance = curDistance;
-                }
-            }
-        Node = GameObject.FindGameObjectWithTag("SyntheticNode");
     }
     
 
